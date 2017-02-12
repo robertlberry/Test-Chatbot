@@ -59,23 +59,22 @@ exports.handle = function handle(client) {
     },
   })
 
-  const sayHello = client.createStep({
-    satisfied() {
-      return Boolean(client.getConversationState().weatherCity)
-    },
-    
-    prompt() {
-      client.addResponse('prompt/weather_city')
-      client.done()
-    },
-  })
+  //const sayHello = client.createStep({
+  //  satisfied() {
+  //    return Boolean(client.getConversationState().weatherCity)
+  //  },
+
+  //  prompt() {
+  //    client.addResponse('prompt/weather_city')
+  //    client.done()
+  //  },
+  //})
 
 
   client.runFlow({
     classifications: {},
     streams: {
       main: 'getWeather',
-      hi: [sayHello],
       getWeather: [collectCity, provideWeather],
     }
   })
